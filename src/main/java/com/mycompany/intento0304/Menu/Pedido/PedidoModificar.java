@@ -7,6 +7,7 @@ package com.mycompany.intento0304.Menu.Pedido;
 import com.mycompany.intento0304.Controladores.ControladorPedido;
 import com.mycompany.intento0304.Controladores.ControladorProducto;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,8 +30,8 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         this.setResizable(true);
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         actualizarTabla();
-        actualizarCombos();
-        
+        actualizarCombosPedi();
+        actualizarCombosProdu();
     }
 
     private void actualizarTabla() {
@@ -59,28 +60,33 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         this.tbPedido.setModel(new javax.swing.table.DefaultTableModel(datosTabla, encabezado));
 
     }
-     private void actualizarCombos() {
-        //var data = new String[this.controladorProducto.moo]
+
+    private void actualizarCombosPedi() {
+        JOptionPane.showMessageDialog(null, "1");
+
         var data = new String[this.controladorPedido.mostrarInfo().size()];
-
-        for (int i = 0; i < controladorPedido.mostrarInfo().size(); i++) {
-            //data[i] = controladorProducto.mostrarInfo().get(i).getCodigo();
-            data[i] = String.valueOf(controladorPedido.mostrarInfo().get(i).getCodigoPedido());
-
-        }
-
-        this.cbPedidos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
-
-//this.cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
-    }
+        
      
-     public void actualizarCombosP() {
+          JOptionPane.showMessageDialog(null,"Valor controladoe; " + controladorPedido.mostrarInfo().size());
+         
+         
+        for (int i = 0; i < controladorPedido.mostrarInfo().size(); i++) {
+            JOptionPane.showMessageDialog(null, "2");
+            data[i] = String.valueOf(controladorPedido.mostrarInfo().get(i).getCodigoPedido());
+            JOptionPane.showMessageDialog(null, "3");
+        }
+        
+        JOptionPane.showMessageDialog(null, "4");
+        this.cbPedido.setModel(new javax.swing.DefaultComboBoxModel<>(data));
+        JOptionPane.showMessageDialog(null, "5");
+    }
+
+    public void actualizarCombosProdu() {
         var data = new String[this.controladorProducto.mostrarInfo().size()];
         for (var i = 0; i < this.controladorProducto.mostrarInfo().size(); i++) {
             data[i] = String.valueOf(this.controladorProducto.mostrarInfo().get(i).getCodigo());
         }
         this.cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
-
     }
 
     /**
@@ -103,17 +109,18 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPedido = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnActualizar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btGuardarModif = new javax.swing.JButton();
-        cbPedidos = new javax.swing.JComboBox<>();
+        cbPedido = new javax.swing.JComboBox<>();
         txtCodigo = new javax.swing.JTextField();
         txtComprador = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        btModificar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Comprador");
 
@@ -145,10 +152,10 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Tipos de mercaderia");
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnActualizar.setText("Actualizar");
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnActualizarActionPerformed(evt);
             }
         });
 
@@ -162,13 +169,20 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
             }
         });
 
-        cbPedidos.addActionListener(new java.awt.event.ActionListener() {
+        cbPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbPedidosActionPerformed(evt);
+                cbPedidoActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Código");
+
+        btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -185,21 +199,25 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel1))
                                 .addGap(60, 60, 60)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(207, 207, 207)
-                                        .addComponent(jButton1)
-                                        .addGap(81, 81, 81)
+                                        .addGap(181, 181, 181)
+                                        .addComponent(BtnActualizar)
+                                        .addGap(58, 58, 58)
+                                        .addComponent(btModificar)
+                                        .addGap(40, 40, 40)
                                         .addComponent(btGuardarModif))
-                                    .addComponent(txtComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(161, 161, 161)
-                                        .addComponent(jLabel6))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel6)))))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(133, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -213,10 +231,6 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cbPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(314, 314, 314))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,25 +240,18 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton1)
-                                    .addComponent(btGuardarModif))))
+                            .addComponent(jLabel3)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -258,12 +265,17 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7)
                             .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnActualizar)
+                            .addComponent(btGuardarModif)
+                            .addComponent(btModificar))
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel8.setText("Eliminar Pedido");
+        jLabel8.setText("Modificar Pedido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,7 +292,7 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,14 +302,15 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
         // TODO add your handling code here:
-        actualizarCombosP();
+        actualizarCombosPedi();
+        actualizarCombosProdu();
         this.btGuardarModif.setEnabled(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnActualizarActionPerformed
 
     private void btGuardarModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarModifActionPerformed
-        int codigoProducto = Integer.valueOf(this.cbPedidos.getSelectedItem().toString());
+        int codigoProducto = Integer.valueOf(this.cbPedido.getSelectedItem().toString());
 
         for (int x = 0; x < controladorPedido.mostrarInfo().size(); x++) {
             if (codigoProducto == controladorPedido.mostrarInfo().get(x).getCodigoPedido()) {
@@ -318,13 +331,31 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btGuardarModifActionPerformed
 
-    private void cbPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbPedidosActionPerformed
+    private void cbPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPedidoActionPerformed
+
+    }//GEN-LAST:event_cbPedidoActionPerformed
 
     private void cbMercaderiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMercaderiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbMercaderiaActionPerformed
+
+    private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+        // TODO add your handling code here:
+        int codigoPedido = Integer.valueOf(this.cbPedido.getSelectedItem().toString());
+        this.btGuardarModif.setEnabled(true);
+
+        for (int x = 0; x < controladorPedido.mostrarInfo().size(); x++) {
+            if (codigoPedido == controladorPedido.mostrarInfo().get(x).getCodigoPedido()) {
+                this.txtCodigo.setText(String.valueOf(codigoPedido));
+                this.txtComprador.setText(controladorPedido.mostrarInfo().get(x).getNombreComprador());
+                this.txtTotal.setText(String.valueOf(controladorPedido.mostrarInfo().get(x).getTotalSinIva()));
+                this.cbMercaderia.setSelectedItem(controladorPedido.mostrarInfo().get(x).getTipoDeMercaderia());
+                this.txtObservaciones.setText(controladorPedido.mostrarInfo().get(x).getObservaciones());
+                this.cbProductos.setSelectedItem(controladorPedido.mostrarInfo().get(x).getProducto());
+                break;
+            }
+        }
+    }//GEN-LAST:event_btModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,11 +393,12 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnActualizar;
     private javax.swing.JButton btGuardarModif;
+    private javax.swing.JButton btModificar;
     private javax.swing.JComboBox<String> cbMercaderia;
-    private javax.swing.JComboBox<String> cbPedidos;
+    private javax.swing.JComboBox<String> cbPedido;
     private javax.swing.JComboBox<String> cbProductos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

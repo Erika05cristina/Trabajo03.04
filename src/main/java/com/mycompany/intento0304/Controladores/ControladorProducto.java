@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * 
+ *
  */
 public class ControladorProducto {
 
@@ -28,12 +28,9 @@ public class ControladorProducto {
             if (Character.isDigit(cadenaDiv[i])) {
                 n += cadenaDiv[i];
             } else {
-
                 return false;
             }
         }
-        //var cod = Integer.valueOf(numero).intValue();
-
         if (numero > 0) {
 
             return true;
@@ -88,6 +85,7 @@ public class ControladorProducto {
 
     public void validarDatos(String[] datos) {
         boolean valido = true;
+        
         int codigo = Integer.valueOf(datos[0]);
         String nombre = datos[1];
         int cantidad = Integer.valueOf(datos[2]);

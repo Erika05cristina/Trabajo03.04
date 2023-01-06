@@ -281,6 +281,7 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
         datos[5] = cbProductos1.getSelectedItem().toString();
 
         controladorPedido.validarDatos(datos);
+        
         actualizarTabla();
     }//GEN-LAST:event_btGuardarActionPerformed
 

@@ -7,7 +7,11 @@ package com.mycompany.intento0304.Menu;
 import com.mycompany.intento0304.Menu.Pedido.PedidoEliminar;
 import com.mycompany.intento0304.Menu.Pedido.PedidoInsertar;
 import com.mycompany.intento0304.Menu.Pedido.PedidoModificar;
+import com.mycompany.intento0304.Menu.Producto.ProductoEliminar;
 import com.mycompany.intento0304.Menu.Producto.ProductoInsertar;
+import com.mycompany.intento0304.Menu.Producto.ProductoModificar;
+import com.mycompany.intento0304.Menu.Proveedor.ProveedorInsertar;
+import com.mycompany.intento0304.Menu.Proveedor.ProveedorModificar;
 import com.mycompany.intento0304.vista.*;
 import javax.swing.JFrame;
 
@@ -54,9 +58,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ModificarPedido = new javax.swing.JMenuItem();
         EliminarPedido = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        ProveedorInsertar = new javax.swing.JMenuItem();
+        ProveedorModificar = new javax.swing.JMenuItem();
+        ProveedorEliminar = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -96,9 +100,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu10.add(InsertarProducto);
 
         ModificarProducto.setText("Modificar Datos");
+        ModificarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarProductoActionPerformed(evt);
+            }
+        });
         jMenu10.add(ModificarProducto);
 
         EliminarProducto.setText("Eliminar Datos");
+        EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarProductoActionPerformed(evt);
+            }
+        });
         jMenu10.add(EliminarProducto);
 
         jMenuBar3.add(jMenu10);
@@ -133,14 +147,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu6.setText("Proveedor");
 
-        jMenuItem7.setText("Insertar Datos");
-        jMenu6.add(jMenuItem7);
+        ProveedorInsertar.setText("Insertar Datos");
+        ProveedorInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProveedorInsertarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(ProveedorInsertar);
 
-        jMenuItem8.setText("Modificar Datos");
-        jMenu6.add(jMenuItem8);
+        ProveedorModificar.setText("Modificar Datos");
+        ProveedorModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProveedorModificarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(ProveedorModificar);
 
-        jMenuItem9.setText("Eliminar Datos");
-        jMenu6.add(jMenuItem9);
+        ProveedorEliminar.setText("Eliminar Datos");
+        ProveedorEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProveedorEliminarActionPerformed(evt);
+            }
+        });
+        jMenu6.add(ProveedorEliminar);
 
         jMenuBar3.add(jMenu6);
 
@@ -192,6 +221,52 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.jDesktopPane1.add(productoInsertar); 
     }//GEN-LAST:event_InsertarProductoActionPerformed
 
+    private void ModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarProductoActionPerformed
+        // TODO add your handling code here:
+        var productoModificar= new ProductoModificar();
+        productoModificar.setClosable(true);
+        productoModificar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        productoModificar.setVisible(true);
+        this.jDesktopPane1.add(productoModificar); 
+    }//GEN-LAST:event_ModificarProductoActionPerformed
+
+    private void EliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductoActionPerformed
+        // TODO add your handling code here:
+        var productoEliminar= new ProductoEliminar();
+        productoEliminar.setClosable(true);
+        productoEliminar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        productoEliminar.setVisible(true);
+        this.jDesktopPane1.add(productoEliminar); 
+    }//GEN-LAST:event_EliminarProductoActionPerformed
+
+    private void ProveedorInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedorInsertarActionPerformed
+        // TODO add your handling code here:
+        var proveedorInsertar= new ProveedorInsertar();
+        proveedorInsertar.setClosable(true);
+        proveedorInsertar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        proveedorInsertar.setVisible(true);
+        this.jDesktopPane1.add(proveedorInsertar); 
+    }//GEN-LAST:event_ProveedorInsertarActionPerformed
+
+    private void ProveedorModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedorModificarActionPerformed
+        // TODO add your handling code here:
+        var proveedorModificar= new ProveedorModificar();
+        proveedorModificar.setClosable(true);
+        proveedorModificar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        proveedorModificar.setVisible(true);
+        this.jDesktopPane1.add(proveedorModificar); 
+    }//GEN-LAST:event_ProveedorModificarActionPerformed
+
+    private void ProveedorEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedorEliminarActionPerformed
+        // TODO add your handling code here:
+        var proveedorInsertar= new ProveedorInsertar();
+        proveedorInsertar.setClosable(true);
+        proveedorInsertar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        proveedorInsertar.setVisible(true);
+        this.jDesktopPane1.add(proveedorInsertar); 
+        
+    }//GEN-LAST:event_ProveedorEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,6 +310,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem InsertarProducto;
     private javax.swing.JMenuItem ModificarPedido;
     private javax.swing.JMenuItem ModificarProducto;
+    private javax.swing.JMenuItem ProveedorEliminar;
+    private javax.swing.JMenuItem ProveedorInsertar;
+    private javax.swing.JMenuItem ProveedorModificar;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
@@ -247,8 +325,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,17 +4,70 @@
  */
 package com.mycompany.intento0304.Menu.Producto;
 
+import com.mycompany.intento0304.Controladores.ControladorPedido;
+import com.mycompany.intento0304.Controladores.ControladorProducto;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kristina
  */
-public class ProductoEliminar extends javax.swing.JFrame {
+public class ProductoEliminar extends javax.swing.JInternalFrame {
+
+    public ControladorPedido controladorPedido = new ControladorPedido();
+    public ControladorProducto controladorProducto = new ControladorProducto();
 
     /**
      * Creates new form ProductoEliminar
      */
     public ProductoEliminar() {
         initComponents();
+
+        this.setIconifiable(true);
+        this.setIgnoreRepaint(true);
+        this.setClosable(true);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+        actualizarTabla();
+        actualizarCombos();
+    }
+
+    private void actualizarCombos() {
+        //var data = new String[this.controladorProducto.moo]
+        var data = new String[this.controladorProducto.mostrarInfo().size()];
+
+        for (int i = 0; i < controladorProducto.mostrarInfo().size(); i++) {
+            //data[i] = controladorProducto.mostrarInfo().get(i).getCodigo();
+            data[i] = String.valueOf(controladorProducto.mostrarInfo().get(i).getCodigo());
+
+        }
+
+        this.cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
+
+//this.cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
+    }
+
+    private void actualizarTabla() {
+        var datosTabla = new Object[this.controladorProducto.mostrarInfo().size()][4];
+
+        for (int x = 0; x < this.controladorProducto.mostrarInfo().size(); x++) {
+            datosTabla[x][0] = this.controladorProducto.mostrarInfo().get(x).getCodigo();
+            datosTabla[x][1] = this.controladorProducto.mostrarInfo().get(x).getNombre();
+            datosTabla[x][2] = this.controladorProducto.mostrarInfo().get(x).getCantidad();
+            datosTabla[x][3] = this.controladorProducto.mostrarInfo().get(x).getPrecio();
+
+        }
+
+        var encabezado = new String[4];
+        encabezado[0] = "Código";
+        encabezado[1] = "Nombre";
+        encabezado[2] = "Cantidad";
+        encabezado[3] = "Precio";
+
+        //jTable1.setModel(new javax.swing.table.DefaultTableModel(data, encabezado));
+        this.tbProductos.setModel(new javax.swing.table.DefaultTableModel(datosTabla, encabezado));
+
     }
 
     /**
@@ -26,21 +79,109 @@ public class ProductoEliminar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btBorrar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        cbProductos = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbProductos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btBorrar.setText("Borrar");
+        btBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBorrarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Seleccionar código de Productos");
+
+        cbProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProductosActionPerformed(evt);
+            }
+        });
+
+        tbProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbProductos);
+
+        jLabel1.setText("Eliminar Producto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btBorrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel6)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jLabel1)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBorrar))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 100, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
+        // TODO add your handling code here:
+        int codigoProducto = Integer.valueOf(this.cbProductos.getSelectedItem().toString());
+
+        for (int x = 0; x < controladorProducto.mostrarInfo().size(); x++) {
+            if (codigoProducto == controladorProducto.mostrarInfo().get(x).getCodigo()) {
+                controladorProducto.eliminarProducto(x);
+                JOptionPane.showMessageDialog(null, "Se ha eliminado un producto");
+                actualizarCombos();
+                actualizarTabla();
+                break;
+
+            }
+
+        }
+    }//GEN-LAST:event_btBorrarActionPerformed
+
+    private void cbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +219,11 @@ public class ProductoEliminar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btBorrar;
+    private javax.swing.JComboBox<String> cbProductos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbProductos;
     // End of variables declaration//GEN-END:variables
 }

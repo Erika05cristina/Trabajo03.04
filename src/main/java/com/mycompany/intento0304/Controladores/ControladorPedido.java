@@ -31,11 +31,9 @@ public class ControladorPedido {
             if (Character.isDigit(cadenaDiv[i])) {
                 n += cadenaDiv[i];
             } else {
-
                 return false;
             }
         }
-
         if (numero > 0) {
 
             return true;
@@ -84,7 +82,7 @@ public class ControladorPedido {
             var pedido = new Pedido(codigo, comprador,
                     total, tipoMercaderia, observaciones, productos);
             this.pedidoServiceImpl.crearPedido(pedido);
-            JOptionPane.showMessageDialog(null, "Se ha creado un nuevo producto");
+            JOptionPane.showMessageDialog(null, "Se ha creado un nuevo pedido");
 
         } else {
             JOptionPane.showMessageDialog(null, "No se creo el pedido!");

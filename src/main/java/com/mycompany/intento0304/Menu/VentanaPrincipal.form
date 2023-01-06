@@ -66,11 +66,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar Datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarProductoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="EliminarProducto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarProductoActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -110,20 +116,29 @@
             <Property name="text" type="java.lang.String" value="Proveedor"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+            <MenuItem class="javax.swing.JMenuItem" name="ProveedorInsertar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Insertar Datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProveedorInsertarActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
+            <MenuItem class="javax.swing.JMenuItem" name="ProveedorModificar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar Datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProveedorModificarActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+            <MenuItem class="javax.swing.JMenuItem" name="ProveedorEliminar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Datos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProveedorEliminarActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

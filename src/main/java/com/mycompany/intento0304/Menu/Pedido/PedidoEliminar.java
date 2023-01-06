@@ -69,7 +69,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
             data[i] = String.valueOf(controladorPedido.mostrarInfo().get(i).getCodigoPedido());
 
         }
-        this.cbPedidos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
+        this.cbPedidos1.setModel(new javax.swing.DefaultComboBoxModel<>(data));
 
 //this.cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
     }
@@ -88,7 +88,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPedido = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        cbProductos = new javax.swing.JComboBox<>();
+        cbPedidos1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         btBorrar = new javax.swing.JButton();
 
@@ -98,7 +98,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tbPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,9 +115,9 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Eliminar Pedidos");
 
-        cbProductos.addActionListener(new java.awt.event.ActionListener() {
+        cbPedidos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbProductosActionPerformed(evt);
+                cbPedidos1ActionPerformed(evt);
             }
         });
 
@@ -144,7 +144,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(52, 52, 52)
-                        .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addComponent(btBorrar)
                         .addGap(31, 31, 31))))
@@ -163,7 +163,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBorrar))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
@@ -186,9 +186,9 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbPedidosActionPerformed
 
-    private void cbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductosActionPerformed
+    private void cbPedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPedidos1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbProductosActionPerformed
+    }//GEN-LAST:event_cbPedidos1ActionPerformed
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
         // TODO add your handling code here:
@@ -246,7 +246,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBorrar;
     private javax.swing.JComboBox<String> cbPedidos;
-    private javax.swing.JComboBox<String> cbProductos;
+    private javax.swing.JComboBox<String> cbPedidos1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
