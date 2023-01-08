@@ -85,35 +85,39 @@ public class ControladorProducto {
 
     public void validarDatos(String[] datos) {
         boolean valido = true;
-        
-        int codigo = Integer.valueOf(datos[0]);
-        String nombre = datos[1];
-        int cantidad = Integer.valueOf(datos[2]);
-        double precio = Double.valueOf(datos[3]);
+        try {
 
-        if (this.validarNumeros(codigo) == false) {
-            valido = false;
-        }
-        if (this.validarNombre(nombre) == false) {
-            valido = false;
-        }
-        if (this.validarNumeros(cantidad) == false) {
-            valido = false;
-        }
-        /*if(validarPrecio(precio) == false){
+            int codigo = Integer.valueOf(datos[0]);
+            String nombre = datos[1];
+            int cantidad = Integer.valueOf(datos[2]);
+            double precio = Double.valueOf(datos[3]);
+
+            if (this.validarNumeros(codigo) == false) {
+                valido = false;
+            }
+            if (this.validarNombre(nombre) == false) {
+                valido = false;
+            }
+            if (this.validarNumeros(cantidad) == false) {
+                valido = false;
+            }
+            /*if(validarPrecio(precio) == false){
             valido = false;
         }*/
 
-        if (valido == true) {
-            var productoNuevo = new Producto(codigo, nombre, cantidad, precio);
-            this.productoServiceImpl.crearProduct(productoNuevo);
-            JOptionPane.showMessageDialog(null, "Se ha creado un nuevo producto");
+            if (valido == true) {
+                var productoNuevo = new Producto(codigo, nombre, cantidad, precio);
+                this.productoServiceImpl.crearProduct(productoNuevo);
+                JOptionPane.showMessageDialog(null, "Se ha creado un nuevo producto");
 
-        } else {
-            JOptionPane.showMessageDialog(null, "No se creo un producto!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se creo un producto!");
 
+            }
+        } catch (NumberFormatException e1) {
+            JOptionPane.showMessageDialog(null, "No se puedo ingresar texto ");
+            
         }
-
     }
 
     public void eliminarProducto(int indice) {

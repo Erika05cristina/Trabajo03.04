@@ -7,6 +7,7 @@ package com.mycompany.intento0304.Menu.Pedido;
 import com.mycompany.intento0304.Controladores.ControladorPedido;
 import com.mycompany.intento0304.Controladores.ControladorProducto;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -281,7 +282,8 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
         datos[5] = cbProductos1.getSelectedItem().toString();
 
         controladorPedido.validarDatos(datos);
-        
+        JOptionPane.showMessageDialog(null, "Valor controlador; " + controladorPedido.mostrarInfo().size());
+
         actualizarTabla();
     }//GEN-LAST:event_btGuardarActionPerformed
 
