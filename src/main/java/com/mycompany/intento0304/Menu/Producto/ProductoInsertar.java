@@ -26,6 +26,8 @@ public class ProductoInsertar extends javax.swing.JInternalFrame {
         this.setClosable(true);
         this.setResizable(true);
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+        actualizarTabla();
+       
     }
 
     private void actualizarTabla() {

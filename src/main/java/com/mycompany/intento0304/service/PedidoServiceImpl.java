@@ -15,7 +15,8 @@ import java.util.List;
  */
 public class PedidoServiceImpl implements PedidoService {
 
-    List<Pedido> pedidoLista = new ArrayList<>();
+    
+    private static List<Pedido> pedidoLista = new ArrayList<>();
 
     @Override
     public void crearPedido(Pedido pedido) {
@@ -34,14 +35,14 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public Pedido buscarPorCodigo(int codigo) {
-    Pedido retorno = null;
+        Pedido retorno = null;
         for (var pedido : this.pedidoLista) {
             if (codigo == pedido.getCodigoPedido()) {
                 retorno = pedido;
                 break;
             }
         }
-        return retorno;   
+        return retorno;
     }
 
 }

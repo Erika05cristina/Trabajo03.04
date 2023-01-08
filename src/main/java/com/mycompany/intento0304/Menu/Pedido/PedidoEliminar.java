@@ -124,7 +124,6 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
         jLabel6.setText("Selecione el Pedido");
 
         btBorrar.setText("Eliminar");
-        btBorrar.setEnabled(false);
         btBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBorrarActionPerformed(evt);
@@ -192,17 +191,16 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
         // TODO add your handling code here:
-        int codigoProducto = Integer.valueOf(this.cbPedidos.getSelectedItem().toString());
-
+        int codigoPedido = Integer.valueOf(this.cbPedidos1.getSelectedItem().toString());
+        
         for (int x = 0; x < controladorPedido.mostrarInfo().size(); x++) {
-            if (codigoProducto == controladorPedido.mostrarInfo().get(x).getCodigoPedido()) {
+            if (codigoPedido == controladorPedido.mostrarInfo().get(x).getCodigoPedido()) {
                 controladorPedido.eliminarPedido(x);
                 JOptionPane.showMessageDialog(null, "Se ha eliminado un pedido");
                 actualizarTabla();
                 actualizarCombos();
                 
                 break;
-
             }
 
         }

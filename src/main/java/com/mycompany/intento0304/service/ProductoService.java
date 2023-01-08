@@ -12,9 +12,13 @@ import java.util.List;
  * @author Jonna
  */
 public interface ProductoService {
+
     public void crearProduct(Producto producto);
+
     public void eliminarProducto(int indice);
+
     public List<Producto> mostrarInfo();
+
     public Producto buscarPorCodigo(int codigo);
-    
+
 }

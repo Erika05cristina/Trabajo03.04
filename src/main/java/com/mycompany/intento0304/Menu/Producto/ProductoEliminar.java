@@ -34,11 +34,9 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
     }
 
     private void actualizarCombos() {
-        //var data = new String[this.controladorProducto.moo]
         var data = new String[this.controladorProducto.mostrarInfo().size()];
 
         for (int i = 0; i < controladorProducto.mostrarInfo().size(); i++) {
-            //data[i] = controladorProducto.mostrarInfo().get(i).getCodigo();
             data[i] = String.valueOf(controladorProducto.mostrarInfo().get(i).getCodigo());
 
         }

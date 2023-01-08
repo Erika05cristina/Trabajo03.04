@@ -32,8 +32,6 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         actualizarTabla();
         actualizarCombosPedi();
         actualizarCombosProdu();
-        JOptionPane.showMessageDialog(null, "Valor controladoe; " + controladorPedido.mostrarInfo().size());
-
     }
 
     private void actualizarTabla() {
@@ -64,17 +62,12 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
     }
 
     private void actualizarCombosPedi() {
-        JOptionPane.showMessageDialog(null, "1");
-
         var data = new String[this.controladorPedido.mostrarInfo().size()];
         
         for (int i = 0; i < controladorPedido.mostrarInfo().size(); i++) {
-            JOptionPane.showMessageDialog(null, "2");
             data[i] = String.valueOf(controladorPedido.mostrarInfo().get(i).getCodigoPedido());
-            JOptionPane.showMessageDialog(null, "3");
         }
 
-        JOptionPane.showMessageDialog(null, "4");
         this.cbPedido.setModel(new javax.swing.DefaultComboBoxModel<>(data));
     }
 

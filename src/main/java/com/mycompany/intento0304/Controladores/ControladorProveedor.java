@@ -93,12 +93,12 @@ public class ControladorProveedor {
         if (this.validarTexto(ruta) == false) {
             valido = false;
         }
-        if (this.validarHora(horaIngreso) == false) {
+/*        if (this.validarHora(horaIngreso) == false) {
             valido = false;
         }
-        if (this.validarHora(horaSalida) == false) {
+      /*  if (this.validarHora(horaSalida) == false) {
             valido = false;
-        }
+        }*/
 
         if (valido == true) {
             var proveedor = new Proveedor(codigo, nombre, ruta, horaIngreso, horaSalida, pedido);

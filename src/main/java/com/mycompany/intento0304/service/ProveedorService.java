@@ -4,6 +4,7 @@
  */
 package com.mycompany.intento0304.service;
 
+import com.mycompany.intento0304.modelo.Pedido;
 import com.mycompany.intento0304.modelo.Proveedor;
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface ProveedorService {
 
     public List<Proveedor> mostrarInfo();
     
-   
+   public Proveedor buscarPorCodigo(int codigo);
 
 }

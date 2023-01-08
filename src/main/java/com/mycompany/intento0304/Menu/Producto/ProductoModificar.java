@@ -58,7 +58,7 @@ public class ProductoModificar extends javax.swing.JInternalFrame {
         var data = new String[this.controladorProducto.mostrarInfo().size()];
 
         for (int i = 0; i < controladorProducto.mostrarInfo().size(); i++) {
-            //data[i] = controladorProducto.mostrarInfo().get(i).getCodigo();
+           
             data[i] = String.valueOf(controladorProducto.mostrarInfo().get(i).getCodigo());
 
         }

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ProveedorServiceImpl implements ProveedorService {
 
-    List<Proveedor> proveedorLista = new ArrayList<>();
+    private static List<Proveedor> proveedorLista = new ArrayList<>();
 
     @Override
     public void crearProveedor(Proveedor proveedor) {
@@ -32,6 +32,15 @@ public class ProveedorServiceImpl implements ProveedorService {
         proveedorLista.remove(indice);
     }
 
- 
-
+    @Override
+    public Proveedor buscarPorCodigo(int codigo) {
+        Proveedor retorno = null;
+        for (var proveedor : this.proveedorLista) {
+            if (codigo == proveedor.getCodigo()) {
+                retorno = proveedor;
+                break;
+            }
+        }
+        return retorno;
+    }
 }

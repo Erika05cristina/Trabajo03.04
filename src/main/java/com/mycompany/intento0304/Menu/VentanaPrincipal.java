@@ -10,6 +10,7 @@ import com.mycompany.intento0304.Menu.Pedido.PedidoModificar;
 import com.mycompany.intento0304.Menu.Producto.ProductoEliminar;
 import com.mycompany.intento0304.Menu.Producto.ProductoInsertar;
 import com.mycompany.intento0304.Menu.Producto.ProductoModificar;
+import com.mycompany.intento0304.Menu.Proveedor.ProveedorEliminar;
 import com.mycompany.intento0304.Menu.Proveedor.ProveedorInsertar;
 import com.mycompany.intento0304.Menu.Proveedor.ProveedorModificar;
 import com.mycompany.intento0304.vista.*;
@@ -259,11 +260,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void ProveedorEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedorEliminarActionPerformed
         // TODO add your handling code here:
-        var proveedorInsertar= new ProveedorInsertar();
-        proveedorInsertar.setClosable(true);
-        proveedorInsertar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        proveedorInsertar.setVisible(true);
-        this.jDesktopPane1.add(proveedorInsertar); 
+        var proveedorEliminar= new ProveedorEliminar();
+        proveedorEliminar.setClosable(true);
+        proveedorEliminar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        proveedorEliminar.setVisible(true);
+        this.jDesktopPane1.add(proveedorEliminar); 
         
     }//GEN-LAST:event_ProveedorEliminarActionPerformed
 

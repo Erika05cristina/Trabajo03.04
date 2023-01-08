@@ -30,13 +30,15 @@ public class ProveedorEliminar extends javax.swing.JInternalFrame {
         this.setResizable(true);
         this.setVisible(true);
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+        actualizarTabla();
+        actualizarCombos();
 
     }
 
     private void actualizarCombos() {
         var dataPro = new String[this.controladorProveedor.mostrarInfo().size()];
         for (int i = 0; i < controladorProveedor.mostrarInfo().size(); i++) {
-            dataPro[i] = controladorProveedor.mostrarInfo().get(i).getNombre();
+            dataPro[i] = String.valueOf(controladorProveedor.mostrarInfo().get(i).getCodigo());
         }
 
         this.cbProveedores.setModel(new javax.swing.DefaultComboBoxModel<>(dataPro));
@@ -161,10 +163,10 @@ public class ProveedorEliminar extends javax.swing.JInternalFrame {
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
         // TODO add your handling code here:
-        int codigoProducto = Integer.valueOf(this.cbProveedores.getSelectedItem().toString());
+        int codigoProveedor = Integer.valueOf(this.cbProveedores.getSelectedItem().toString());
 
         for (int x = 0; x < controladorProveedor.mostrarInfo().size(); x++) {
-            if (codigoProducto == controladorProveedor.mostrarInfo().get(x).getCodigo()) {
+            if (codigoProveedor == controladorProveedor.mostrarInfo().get(x).getCodigo()) {
                 controladorProveedor.eliminarProveedor(x);
                 JOptionPane.showMessageDialog(null, "Se ha eliminado un proveedor");
                 actualizarCombos();

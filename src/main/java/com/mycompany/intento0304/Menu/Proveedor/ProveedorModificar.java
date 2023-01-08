@@ -13,17 +13,17 @@ import javax.swing.JOptionPane;
  *
  * @author Kristina
  */
-public class ProveedorModificar extends  javax.swing.JInternalFrame {
+public class ProveedorModificar extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ProveedorModificar
      */
     public ControladorProveedor controladorProveedor = new ControladorProveedor();
     public ControladorPedido controladorPedido = new ControladorPedido();
-    
+
     public ProveedorModificar() {
         initComponents();
-        
+
         this.setIconifiable(true);
         this.setIgnoreRepaint(true);
         this.setClosable(true);
@@ -32,18 +32,19 @@ public class ProveedorModificar extends  javax.swing.JInternalFrame {
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         actualizarCombosPedido();
         actualizarCombos();
+        actualizarTabla();
+
     }
-    
-     private void actualizarCombos() {
+
+    private void actualizarCombos() {
         var dataPro = new String[this.controladorProveedor.mostrarInfo().size()];
         for (int i = 0; i < controladorProveedor.mostrarInfo().size(); i++) {
-            dataPro[i] = controladorProveedor.mostrarInfo().get(i).getNombre();
+            dataPro[i] = String.valueOf(controladorProveedor.mostrarInfo().get(i).getCodigo());
         }
-
         this.cbProveedores.setModel(new javax.swing.DefaultComboBoxModel<>(dataPro));
     }
-     
-     public void actualizarCombosPedido() {
+
+    public void actualizarCombosPedido() {
 
         var data = new String[this.controladorPedido.mostrarInfo().size()];
         for (var i = 0; i < this.controladorPedido.mostrarInfo().size(); i++) {
@@ -317,7 +318,7 @@ public class ProveedorModificar extends  javax.swing.JInternalFrame {
     private void btCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCambiosActionPerformed
         // TODO add your handling code here:
         int codigoProducto = Integer.valueOf(this.cbProveedores.getSelectedItem().toString());
-     
+
         this.btCambios.setEnabled(false);
 
         for (int x = 0; x < controladorProveedor.mostrarInfo().size(); x++) {
@@ -348,8 +349,8 @@ public class ProveedorModificar extends  javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         actualizarCombosPedido();
-         actualizarCombos();
-        
+        actualizarCombos();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
