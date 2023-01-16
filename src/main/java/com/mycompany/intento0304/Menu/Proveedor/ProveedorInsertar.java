@@ -7,6 +7,7 @@ package com.mycompany.intento0304.Menu.Proveedor;
 import com.mycompany.intento0304.Controladores.ControladorPedido;
 import com.mycompany.intento0304.Controladores.ControladorProveedor;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -265,16 +266,24 @@ public class ProveedorInsertar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        String[] datos = new String[6];
+        String[] datos = new String[8];
         datos[0] = txtCodigo.getText();
         datos[1] = txtNombre.getText();
         datos[2] = txtRuta.getText();
         datos[3] = txtHoraIngreso.getText();
         datos[4] = txtHoraSalida.getText();
         datos[5] = cbCodigosPedidos.getSelectedItem().toString();
+        datos[6] = String.valueOf(0);
+        datos[7] = "false";
 
-        controladorProveedor.validarDatos(datos);
-        actualizarTabla();
+        try {
+            controladorProveedor.validarDatos(datos);
+            actualizarTabla();
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la creación", JOptionPane.ERROR_MESSAGE);
+        }
+
+       
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

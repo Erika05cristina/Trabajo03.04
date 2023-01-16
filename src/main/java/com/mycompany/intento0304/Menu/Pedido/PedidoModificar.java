@@ -63,7 +63,7 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
 
     private void actualizarCombosPedi() {
         var data = new String[this.controladorPedido.mostrarInfo().size()];
-        
+
         for (int i = 0; i < controladorPedido.mostrarInfo().size(); i++) {
             data[i] = String.valueOf(controladorPedido.mostrarInfo().get(i).getCodigoPedido());
         }
@@ -305,17 +305,23 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
         for (int x = 0; x < controladorPedido.mostrarInfo().size(); x++) {
             if (codigoProducto == controladorPedido.mostrarInfo().get(x).getCodigoPedido()) {
 
-                String[] datos = new String[6];
+                String[] datos = new String[8];
                 datos[0] = String.valueOf(codigoProducto);
                 datos[1] = txtComprador.getText();
                 datos[2] = txtTotal.getText();
                 datos[3] = cbMercaderia.getSelectedItem().toString();
                 datos[4] = txtObservaciones.getText();
                 datos[5] = cbProductos.getSelectedItem().toString();
+                datos[6] = String.valueOf(x);
+                datos[7] = "true";
 
-                controladorPedido.eliminarPedido(x);
-                controladorPedido.validarDatos(datos);
-                actualizarTabla();
+                try {
+                  //  controladorPedido.eliminarPedido(x);
+                    controladorPedido.validarDatos(datos);
+                    actualizarTabla();
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la modificacion", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
             }
         }
@@ -343,6 +349,7 @@ public class PedidoModificar extends javax.swing.JInternalFrame {
                 this.txtObservaciones.setText(controladorPedido.mostrarInfo().get(x).getObservaciones());
                 this.cbProductos.setSelectedItem(controladorPedido.mostrarInfo().get(x).getProducto());
                 break;
+
             }
         }
     }//GEN-LAST:event_btModificarActionPerformed

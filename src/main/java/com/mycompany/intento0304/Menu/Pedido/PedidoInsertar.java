@@ -135,6 +135,12 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Código Producto");
 
+        cbProductos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProductos1ActionPerformed(evt);
+            }
+        });
+
         jLabel11.setText("Tipos de mercaderia");
 
         jLabel12.setText("Código");
@@ -273,19 +279,32 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        String[] datos = new String[6];
+        String[] datos = new String[8];
         datos[0] = txtCodigo1.getText();
         datos[1] = txtComprador1.getText();
         datos[2] = txtTotal1.getText();
         datos[3] = cbMercaderia1.getSelectedItem().toString();
         datos[4] = txtObservaciones1.getText();
         datos[5] = cbProductos1.getSelectedItem().toString();
+        datos[6] = String.valueOf(0);
+        datos[7] = "false";
 
-        controladorPedido.validarDatos(datos);
-        JOptionPane.showMessageDialog(null, "Valor controlador; " + controladorPedido.mostrarInfo().size());
+        try {
+            controladorPedido.validarDatos(datos);
+            actualizarTabla();
+        }catch(Exception e1){
+            JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la creación", JOptionPane.ERROR_MESSAGE);
+        }
 
-        actualizarTabla();
+        
+       // JOptionPane.showMessageDialog(null, "Valor controlador; " + controladorPedido.mostrarInfo().size());
+
+      
     }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void cbProductos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbProductos1ActionPerformed
 
     /**
      * @param args the command line arguments

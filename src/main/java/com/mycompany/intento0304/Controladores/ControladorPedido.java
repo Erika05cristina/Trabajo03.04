@@ -58,35 +58,93 @@ public class ControladorPedido {
         return retorno;
     }
 
+    public boolean codigoExiste(int codigoActual) {
+
+        for (int x = 0; x < pedidoServiceImpl.mostrarInfo().size(); x++) {
+            if (codigoActual == pedidoServiceImpl.mostrarInfo().get(x).getCodigoPedido()) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean compradorexiste(String nombreActual) {
+
+        for (int x = 0; x < pedidoServiceImpl.mostrarInfo().size(); x++) {
+            if (nombreActual.equals(pedidoServiceImpl.mostrarInfo().get(x).getNombreComprador())) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void validarDatos(String[] datos) {
         boolean valido = true;
-        int codigo = Integer.valueOf(datos[0]);
-        String comprador = datos[1];
-        double total = Double.valueOf(datos[2]);
-        String tipoMercaderia = datos[3];
-        String observaciones = datos[4];
-        var productos = this.productoServiceImpl.buscarPorCodigo(Integer.valueOf(datos[5]));
+        int posicion = Integer.valueOf(datos[6]);
+        boolean modificar = Boolean.valueOf(datos[7]);
 
-        if (this.validarCodigo(codigo) == false) {
-            valido = false;
-        }
-        if (this.validarTexto(comprador) == false) {
-            valido = false;
-        }
+        try {
+            int codigo = Integer.valueOf(datos[0]);
+            String comprador = datos[1];
+            double total = Double.valueOf(datos[2]);
+            String tipoMercaderia = datos[3];
+            String observaciones = datos[4];
+            var productos = this.productoServiceImpl.buscarPorCodigo(Integer.valueOf(datos[5]));
 
-        if (this.validarTexto(observaciones) == false) {
-            valido = false;
-        }
+            if (this.validarCodigo(codigo) == false) {
+                valido = false;
+            }
+            if (this.validarTexto(comprador) == false) {
+                valido = false;
+                throw new RuntimeException("Ingrese solo letras en el comprador!");
+            }
 
-        if (valido == true) {
-            var pedido = new Pedido(codigo, comprador,
-                    total, tipoMercaderia, observaciones, productos);
-            this.pedidoServiceImpl.crearPedido(pedido);
-            JOptionPane.showMessageDialog(null, "Se ha creado un nuevo pedido");
+            if (this.validarTexto(observaciones) == false) {
+                valido = false;
+                throw new RuntimeException("Ingrese solo letras en las observaciones!");
+            }
 
-        } else {
-            JOptionPane.showMessageDialog(null, "No se creo el pedido!");
+            if (modificar == false) {
+                if (this.codigoExiste(codigo) == true) {
+                    valido = false;
+                    throw new RuntimeException("Código existente!");
 
+                }
+            }
+            if (this.compradorexiste(comprador) == true) {
+
+                valido = false;
+                throw new RuntimeException("Comprador ya existe!");
+
+            }
+
+            if (valido == true) {
+
+                if (modificar == true) {
+                    var pedido = new Pedido(codigo, comprador, total, tipoMercaderia, observaciones, productos);
+                    this.pedidoServiceImpl.crearPedido(pedido);
+                    this.pedidoServiceImpl.eliminarPedido(posicion);
+                } else {
+                    var pedido = new Pedido(codigo, comprador, total, tipoMercaderia, observaciones, productos);
+                    this.pedidoServiceImpl.crearPedido(pedido);
+                }
+
+                JOptionPane.showMessageDialog(null, "Se ha creado un nuevo pedido");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se creo el pedido!");
+            }
+
+        } catch (NumberFormatException e1) {
+
+            JOptionPane.showMessageDialog(null, "No se puedo ingresar texto en el total o codigo!");
+
+        } catch (NullPointerException e1) {
+            JOptionPane.showMessageDialog(null, "No hay productos ingresados!");
+
+            throw new RuntimeException("No hay productos ingresados!");
         }
 
     }

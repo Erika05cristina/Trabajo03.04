@@ -12,6 +12,9 @@ import java.util.List;
  * @author Jonna
  */
 public interface ProductoService {
+    public void crearArchivo(Producto producto,  String ruta) throws Exception;
+    
+    public List<Producto> leerArchivo(Producto producto, String ruta);
 
     public void crearProduct(Producto producto);
 

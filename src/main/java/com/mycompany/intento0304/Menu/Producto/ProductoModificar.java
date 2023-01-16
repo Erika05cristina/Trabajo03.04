@@ -7,6 +7,7 @@ package com.mycompany.intento0304.Menu.Producto;
 import com.mycompany.intento0304.Controladores.ControladorPedido;
 import com.mycompany.intento0304.Controladores.ControladorProducto;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,7 +59,7 @@ public class ProductoModificar extends javax.swing.JInternalFrame {
         var data = new String[this.controladorProducto.mostrarInfo().size()];
 
         for (int i = 0; i < controladorProducto.mostrarInfo().size(); i++) {
-           
+
             data[i] = String.valueOf(controladorProducto.mostrarInfo().get(i).getCodigo());
 
         }
@@ -266,17 +267,24 @@ public class ProductoModificar extends javax.swing.JInternalFrame {
         this.btGuardarMod.setEnabled(false);
 
         for (int x = 0; x < controladorProducto.mostrarInfo().size(); x++) {
-            if (codigoProducto == controladorProducto.mostrarInfo().get(x).getCodigo()) {
+        if (codigoProducto == controladorProducto.mostrarInfo().get(x).getCodigo()) {
 
-                String[] datos = new String[4];
+                String[] datos = new String[6];
                 datos[0] = String.valueOf(codigoProducto);
                 datos[1] = txtNombre.getText();
                 datos[2] = txtCantidad.getText();
                 datos[3] = txtPrecio.getText();
+                datos[4] = String.valueOf(x);
+                datos[5] = "true";
 
-                controladorProducto.eliminarProducto(x);
-                controladorProducto.validarDatos(datos);
-                actualizarTabla();
+                try {
+                    controladorProducto.validarDatos(datos);
+                    
+                    actualizarTabla();
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la modificacion", JOptionPane.ERROR_MESSAGE);
+                }
+
                 break;
             }
         }

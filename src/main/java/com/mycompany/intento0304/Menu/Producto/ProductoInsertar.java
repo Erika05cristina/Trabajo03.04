@@ -5,7 +5,9 @@
 package com.mycompany.intento0304.Menu.Producto;
 
 import com.mycompany.intento0304.Controladores.ControladorProducto;
+import com.mycompany.intento0304.service.ProductoServiceImpl;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +29,10 @@ public class ProductoInsertar extends javax.swing.JInternalFrame {
         this.setResizable(true);
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         actualizarTabla();
-       
+      //  this.controladorProducto.mostrarInfoArchivo(controladorProducto.mostrarInfo().);
+        
+        
+
     }
 
     private void actualizarTabla() {
@@ -202,15 +207,22 @@ public class ProductoInsertar extends javax.swing.JInternalFrame {
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         // TODO add your handling code here:
 
-        String[] datos = new String[4];
+        String[] datos = new String[6];
         datos[0] = txtCodigo.getText();
         datos[1] = txtNombre.getText();
         datos[2] = txtCantidad.getText();
         datos[3] = txtPrecio.getText();
+        datos[4] = String.valueOf(0);
+        datos[5] = "false";
+        
+        try {
+            controladorProducto.validarDatos(datos);
+            actualizarTabla();
+        }catch(Exception e1){
+            JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la creación", JOptionPane.ERROR_MESSAGE);
+        }
 
-        controladorProducto.validarDatos(datos);
-
-        actualizarTabla();
+        
     }//GEN-LAST:event_btGuardarActionPerformed
 
     /**

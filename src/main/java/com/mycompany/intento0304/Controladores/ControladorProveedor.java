@@ -75,40 +75,87 @@ public class ControladorProveedor {
         return b;
     }
 
+    public boolean codigoExiste(int codigoActual) {
+
+        for (int x = 0; x < proveedorServiceImpl.mostrarInfo().size(); x++) {
+            if (codigoActual == proveedorServiceImpl.mostrarInfo().get(x).getCodigo()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean compradorexiste(String nombreActual) {
+
+        for (int x = 0; x < proveedorServiceImpl.mostrarInfo().size(); x++) {
+            if (nombreActual.equals(proveedorServiceImpl.mostrarInfo().get(x).getNombre())) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void validarDatos(String[] datos) {
         boolean valido = true;
-        int codigo = Integer.valueOf(datos[0]);
-        String nombre = datos[1];
-        String ruta = datos[2];
-        String horaIngreso = datos[3];
-        String horaSalida = datos[4];
-        var pedido = this.pedidoServiceImpl.buscarPorCodigo(Integer.valueOf(datos[5]));
+        int posicion = Integer.valueOf(datos[6]);
+        boolean modificar = Boolean.valueOf(datos[7]);
 
-        if (this.validarCodigo(codigo) == false) {
-            valido = false;
-        }
-        if (this.validarTexto(nombre) == false) {
-            valido = false;
-        }
-        if (this.validarTexto(ruta) == false) {
-            valido = false;
-        }
-/*        if (this.validarHora(horaIngreso) == false) {
+        try {
+            int codigo = Integer.valueOf(datos[0]);
+            String nombre = datos[1];
+            String ruta = datos[2];
+            String horaIngreso = datos[3];
+            String horaSalida = datos[4];
+            var pedido = this.pedidoServiceImpl.buscarPorCodigo(Integer.valueOf(datos[5]));
+
+            if (this.validarCodigo(codigo) == false) {
+                valido = false;
+            }
+            if (this.validarTexto(nombre) == false) {
+                valido = false;
+                throw new RuntimeException("Ingrese solo letras en el nombre!");
+            }
+            if (this.validarTexto(ruta) == false) {
+                valido = false;
+                throw new RuntimeException("Ingrese solo letras en la ruta!");
+            }
+            /*        if (this.validarHora(horaIngreso) == false) {
             valido = false;
         }
       /*  if (this.validarHora(horaSalida) == false) {
             valido = false;
-        }*/
+        }*/ if (modificar == false) {
+                if (this.codigoExiste(codigo) == true) {
+                    valido = false;
+                    throw new RuntimeException("Código existente!");
 
-        if (valido == true) {
-            var proveedor = new Proveedor(codigo, nombre, ruta, horaIngreso, horaSalida, pedido);
-            this.proveedorServiceImpl.crearProveedor(proveedor);
+                }
+            }
+            if (this.compradorexiste(nombre) == true) {
 
-            JOptionPane.showMessageDialog(null, "Se ha creado un nuevo proveedor");
+                valido = false;
+                throw new RuntimeException("Comprador ya existe!");
 
-        } else {
-            JOptionPane.showMessageDialog(null, "No se creo un proveedor!");
+            }
 
+            if (valido == true) {
+                var proveedor = new Proveedor(codigo, nombre, ruta, horaIngreso, horaSalida, pedido);
+                this.proveedorServiceImpl.crearProveedor(proveedor);
+
+                JOptionPane.showMessageDialog(null, "Se ha creado un nuevo proveedor");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se creo un proveedor!");
+
+            }
+        } catch (NumberFormatException e1) {
+
+            JOptionPane.showMessageDialog(null, "No se puedo ingresar texto en el total o codigo!");
+
+        } catch (NullPointerException e1) {
+            JOptionPane.showMessageDialog(null, "No hay productos ingresados!");
+            throw new RuntimeException("No hay pedidos ingresados!");
         }
 
     }

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class ControladorProducto {
 
     private ProductoServiceImpl productoServiceImpl = new ProductoServiceImpl();
+    String ruta = "C:\\\\Users\\\\Kristina\\\\Desktop\\\\UPS\\\\POO/producto.txt";
 
     public boolean validarNumeros(int numero) {
         String numCadena = String.valueOf(numero);
@@ -83,10 +84,34 @@ public class ControladorProducto {
 
     }
 
-    public void validarDatos(String[] datos) {
-        boolean valido = true;
-        try {
+    public boolean codigoExiste(int codigoActual) {
 
+        for (int x = 0; x < productoServiceImpl.mostrarInfo().size(); x++) {
+            if (codigoActual == productoServiceImpl.mostrarInfo().get(x).getCodigo()) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean productoExiste(String nombreActual) {
+
+        for (int x = 0; x < productoServiceImpl.mostrarInfo().size(); x++) {
+            if (nombreActual.equals(productoServiceImpl.mostrarInfo().get(x).getNombre())) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void validarDatos(String[] datos) throws Exception {
+        boolean valido = true;
+        int posicion = Integer.valueOf(datos[4]);
+        boolean modificar = Boolean.valueOf(datos[5]);
+
+        try {
             int codigo = Integer.valueOf(datos[0]);
             String nombre = datos[1];
             int cantidad = Integer.valueOf(datos[2]);
@@ -97,26 +122,51 @@ public class ControladorProducto {
             }
             if (this.validarNombre(nombre) == false) {
                 valido = false;
+                throw new RuntimeException("Ingrese solo letras en el nombre!");
+
             }
             if (this.validarNumeros(cantidad) == false) {
                 valido = false;
+                throw new RuntimeException("Ingrese solo numeros!");
             }
-            /*if(validarPrecio(precio) == false){
-            valido = false;
-        }*/
+            if (modificar == false) {
+                if (this.codigoExiste(codigo) == true) {
+                    valido = false;
+                    throw new RuntimeException("Código existente!");
+
+                }
+            }
+
+            if (this.productoExiste(nombre) == true) {
+
+                valido = false;
+                throw new RuntimeException("Producto ya existe!");
+
+            }
 
             if (valido == true) {
-                var productoNuevo = new Producto(codigo, nombre, cantidad, precio);
-                this.productoServiceImpl.crearProduct(productoNuevo);
+
+                if (modificar == true) {
+                    var productoNuevo = new Producto(codigo, nombre, cantidad, precio);
+                    this.productoServiceImpl.crearProduct(productoNuevo);
+                    this.productoServiceImpl.eliminarProducto(posicion);
+                } else {
+                    var productoNuevo = new Producto(codigo, nombre, cantidad, precio);
+                    this.productoServiceImpl.crearProduct(productoNuevo);
+                    this.productoServiceImpl.crearArchivo(productoNuevo, ruta);//Agrega archivo
+                    
+                }
+
                 JOptionPane.showMessageDialog(null, "Se ha creado un nuevo producto");
 
             } else {
                 JOptionPane.showMessageDialog(null, "No se creo un producto!");
 
             }
+
         } catch (NumberFormatException e1) {
-            JOptionPane.showMessageDialog(null, "No se puedo ingresar texto ");
-            
+            JOptionPane.showMessageDialog(null, "No se puedo ingresar texto en precio, cantidad o codigo!");
+
         }
     }
 
@@ -126,6 +176,10 @@ public class ControladorProducto {
 
     public List<Producto> mostrarInfo() {
         return productoServiceImpl.mostrarInfo();
+    }
+
+    public List<Producto> mostrarInfoArchivo(Producto producto) {
+        return productoServiceImpl.leerArchivo(producto, ruta);
     }
 
 }
