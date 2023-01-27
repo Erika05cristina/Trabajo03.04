@@ -91,6 +91,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
         cbPedidos1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         btBorrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         cbPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +131,13 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,9 +152,11 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6)
                         .addGap(52, 52, 52)
                         .addComponent(cbPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(btBorrar)
-                        .addGap(31, 31, 31))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(btBorrar))
+                        .addGap(28, 28, 28))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(177, 177, 177)
                 .addComponent(jLabel1)
@@ -159,12 +169,15 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(cbPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBorrar))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(cbPedidos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btBorrar)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,6 +219,15 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btBorrarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            
+            actualizarTabla();
+        }catch(Exception e1){
+            JOptionPane.showMessageDialog(this, e1.getMessage(), "Error listando", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -245,6 +267,7 @@ public class PedidoEliminar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btBorrar;
     private javax.swing.JComboBox<String> cbPedidos;
     private javax.swing.JComboBox<String> cbPedidos1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

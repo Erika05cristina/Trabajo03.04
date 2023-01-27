@@ -21,5 +21,15 @@ public interface PedidoService {
     public List<Pedido> mostrarInfo();
 
     public Pedido buscarPorCodigo(int codigo);
+   
+    
+    
+    public void crearArchivo(Pedido pedido,  String ruta)throws Exception; //1
+    //2
+    public List<Pedido> leerArchivo( String ruta);
+    
+    public void cargarDatos(List<Pedido> cargarLista);
+    
+    public void modificar(Pedido pedido, int codigo);//Agr
 
 }

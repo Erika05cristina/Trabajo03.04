@@ -28,8 +28,9 @@ public class ProductoModificar extends javax.swing.JInternalFrame {
         this.setClosable(true);
         this.setResizable(true);
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        actualizarTabla();
+      
         actualizarCombos();
+        actualizarTabla();
     }
 
     private void actualizarTabla() {

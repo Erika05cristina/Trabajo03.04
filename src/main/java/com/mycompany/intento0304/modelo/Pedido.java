@@ -4,11 +4,13 @@
  */
 package com.mycompany.intento0304.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jonna
  */
-public class Pedido {
+public class Pedido implements Serializable{
 
     private int codigoPedido;
     private String nombreComprador;

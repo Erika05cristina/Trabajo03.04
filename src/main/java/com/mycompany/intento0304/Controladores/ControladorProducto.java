@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
 public class ControladorProducto {
 
     private ProductoServiceImpl productoServiceImpl = new ProductoServiceImpl();
-    String ruta = "C:\\\\Users\\\\Kristina\\\\Desktop\\\\UPS\\\\POO/producto.txt";
+//3
+    String ruta = "C:\\Users\\Kristina\\Desktop\\UPS\\POO\\Archivos/producto.txt";
 
     public boolean validarNumeros(int numero) {
         String numCadena = String.valueOf(numero);
@@ -153,7 +154,7 @@ public class ControladorProducto {
                 } else {
                     var productoNuevo = new Producto(codigo, nombre, cantidad, precio);
                     this.productoServiceImpl.crearProduct(productoNuevo);
-                    this.productoServiceImpl.crearArchivo(productoNuevo, ruta);//Agrega archivo
+                    this.productoServiceImpl.crearArchivo(productoNuevo, ruta);//Agrega archivo //4
                     
                 }
 
@@ -178,8 +179,12 @@ public class ControladorProducto {
         return productoServiceImpl.mostrarInfo();
     }
 
-    public List<Producto> mostrarInfoArchivo(Producto producto) {
-        return productoServiceImpl.leerArchivo(producto, ruta);
+    public List<Producto> mostrarInfoArchivo() { //5
+        return productoServiceImpl.leerArchivo( ruta);
     }
 
+    public void recuperarTabla(List<Producto> listaObtenida){
+        productoServiceImpl.cargarDatos(listaObtenida);
+    }
+    
 }

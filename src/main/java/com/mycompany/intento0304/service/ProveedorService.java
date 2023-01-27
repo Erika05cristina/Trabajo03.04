@@ -21,5 +21,15 @@ public interface ProveedorService {
     public List<Proveedor> mostrarInfo();
     
    public Proveedor buscarPorCodigo(int codigo);
+   
+   
+   
+   public void crearArchivo(Proveedor proveedor,  String ruta) ;//1
+    //2
+    public List<Proveedor> leerArchivo( String ruta);
+    
+    public void cargarDatos(List<Proveedor> cargarLista);
+    
+    public void modificar(Proveedor proveedor, int codigo);//Agr
 
 }

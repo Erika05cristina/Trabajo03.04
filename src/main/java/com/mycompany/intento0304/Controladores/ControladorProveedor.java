@@ -20,6 +20,7 @@ public class ControladorProveedor {
 
     private ProveedorServiceImpl proveedorServiceImpl = new ProveedorServiceImpl();
     private PedidoServiceImpl pedidoServiceImpl = new PedidoServiceImpl();
+     String ruta = "C:\\Users\\Kristina\\Desktop\\UPS\\POO\\Archivos/proveedor.txt";
 
     public boolean validarCodigo(int numero) {
         String numCadena = String.valueOf(numero);
@@ -159,7 +160,12 @@ public class ControladorProveedor {
         }
 
     }
-
+    public List<Proveedor> mostrarInfoArchivo() { //5
+        return proveedorServiceImpl.leerArchivo( ruta);
+    }
+public void recuperarTabla(List<Proveedor> listaObtenida){
+        proveedorServiceImpl.cargarDatos(listaObtenida);
+    }
     public void eliminarProveedor(int indice) {
         proveedorServiceImpl.eliminarProveedor(indice);
     }

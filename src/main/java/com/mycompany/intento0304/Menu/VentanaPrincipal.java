@@ -13,7 +13,6 @@ import com.mycompany.intento0304.Menu.Producto.ProductoModificar;
 import com.mycompany.intento0304.Menu.Proveedor.ProveedorEliminar;
 import com.mycompany.intento0304.Menu.Proveedor.ProveedorInsertar;
 import com.mycompany.intento0304.Menu.Proveedor.ProveedorModificar;
-import com.mycompany.intento0304.vista.*;
 import javax.swing.JFrame;
 
 /**

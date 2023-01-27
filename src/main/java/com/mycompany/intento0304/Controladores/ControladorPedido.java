@@ -9,6 +9,8 @@ import com.mycompany.intento0304.modelo.Producto;
 import com.mycompany.intento0304.service.PedidoServiceImpl;
 import com.mycompany.intento0304.service.ProductoServiceImpl;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +21,7 @@ public class ControladorPedido {
 
     private PedidoServiceImpl pedidoServiceImpl = new PedidoServiceImpl();
     private ProductoServiceImpl productoServiceImpl = new ProductoServiceImpl();
+    String ruta = "C:\\Users\\Kristina\\Desktop\\UPS\\POO\\Archivos/pedido.txt";
 
     public boolean validarCodigo(int numero) {
         String numCadena = String.valueOf(numero);
@@ -129,6 +132,8 @@ public class ControladorPedido {
                 } else {
                     var pedido = new Pedido(codigo, comprador, total, tipoMercaderia, observaciones, productos);
                     this.pedidoServiceImpl.crearPedido(pedido);
+                    this.pedidoServiceImpl.crearArchivo(pedido, ruta);//Agrega archivo //4
+
                 }
 
                 JOptionPane.showMessageDialog(null, "Se ha creado un nuevo pedido");
@@ -145,8 +150,19 @@ public class ControladorPedido {
             JOptionPane.showMessageDialog(null, "No hay productos ingresados!");
 
             throw new RuntimeException("No hay productos ingresados!");
+        } catch (Exception ex) {
+            Logger.getLogger(PedidoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
+    }
+    
+   public List<Pedido> mostrarInfoArchivo() { //5
+        return pedidoServiceImpl.leerArchivo( ruta);
+    }
+
+    public void recuperarTabla(List<Pedido> listaObtenida){
+        pedidoServiceImpl.cargarDatos(listaObtenida);
     }
 
     public void eliminarPedido(int indice) {

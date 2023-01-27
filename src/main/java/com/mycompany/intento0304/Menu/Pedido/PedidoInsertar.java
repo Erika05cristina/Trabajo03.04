@@ -29,11 +29,14 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
         this.setClosable(true);
         this.setResizable(true);
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        actualizarTabla();
-        actualizarCombosP();
+        /* actualizarTabla();
+        this.controladorPedido.mostrarInfo();*/
+        var listaObtenida = controladorPedido.mostrarInfoArchivo();
+        controladorPedido.recuperarTabla(listaObtenida);
+
     }
 
-    public void actualizarCombosP() {
+    public void actualizarCombosP() { //Combos del producto
         var data = new String[this.controladorProducto.mostrarInfo().size()];
         for (var i = 0; i < this.controladorProducto.mostrarInfo().size(); i++) {
             data[i] = String.valueOf(this.controladorProducto.mostrarInfo().get(i).getCodigo());
@@ -211,9 +214,9 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
+                        .addGap(37, 37, 37)
                         .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)))
+                        .addGap(123, 123, 123)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -250,8 +253,8 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
                             .addComponent(cbProductos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -275,6 +278,16 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         // TODO add your handling code here:
 
+//        try {
+//            var listaObtenida = controladorPedido.mostrarInfoArchivo();
+//            controladorPedido.recuperarTabla(listaObtenida);
+//            actualizarTabla();
+//        } catch (Exception e1) {
+//            JOptionPane.showMessageDialog(this, e1.getMessage(), "Error listando", JOptionPane.ERROR_MESSAGE);
+//        }
+
+ 
+        actualizarTabla();
         actualizarCombosP();
     }//GEN-LAST:event_btActualizarActionPerformed
 
@@ -291,15 +304,14 @@ public class PedidoInsertar extends javax.swing.JInternalFrame {
 
         try {
             controladorPedido.validarDatos(datos);
-            actualizarTabla();
-        }catch(Exception e1){
+            controladorPedido.mostrarInfoArchivo();
+           // actualizarTabla();
+        } catch (Exception e1) {
             JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la creación", JOptionPane.ERROR_MESSAGE);
         }
 
-        
-       // JOptionPane.showMessageDialog(null, "Valor controlador; " + controladorPedido.mostrarInfo().size());
+        // JOptionPane.showMessageDialog(null, "Valor controlador; " + controladorPedido.mostrarInfo().size());
 
-      
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void cbProductos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductos1ActionPerformed

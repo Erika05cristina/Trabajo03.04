@@ -29,8 +29,12 @@ public class ProveedorInsertar extends javax.swing.JInternalFrame {
         this.setResizable(true);
         this.setVisible(true);
         this.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        actualizarCombosPedido();
+       /* actualizarCombosPedido();
         actualizarTabla();
+         this.controladorProveedor.mostrarInfo();//AGr*/
+       
+        var listaObtenida = controladorProveedor.mostrarInfoArchivo();
+        controladorProveedor.recuperarTabla(listaObtenida);
     }
 
     public void actualizarCombosPedido() {
@@ -278,7 +282,9 @@ public class ProveedorInsertar extends javax.swing.JInternalFrame {
 
         try {
             controladorProveedor.validarDatos(datos);
-            actualizarTabla();
+            controladorProveedor.mostrarInfoArchivo();
+       
+            //actualizarTabla();
         } catch (Exception e1) {
             JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la creación", JOptionPane.ERROR_MESSAGE);
         }
@@ -288,6 +294,7 @@ public class ProveedorInsertar extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         actualizarCombosPedido();
+        actualizarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

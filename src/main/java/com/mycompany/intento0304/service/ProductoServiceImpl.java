@@ -7,8 +7,10 @@ package com.mycompany.intento0304.service;
 import com.mycompany.intento0304.modelo.Producto;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -30,9 +32,10 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public void crearProduct(Producto producto) {
-        productoLista.add(producto);
+
         try {
-            this.crearArchivo(producto, "C:\\\\Users\\\\Kristina\\\\Desktop\\\\UPS\\\\POO/producto.txt");
+            productoLista.add(producto);
+            this.crearArchivo(producto, "C:\\Users\\Kristina\\Desktop\\UPS\\POO\\Archivos/producto.txt");
         } catch (Exception ex) {
             Logger.getLogger(ProductoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -40,13 +43,23 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public List<Producto> mostrarInfo() {
-
         return productoLista;
     }
 
     @Override
     public void eliminarProducto(int indice) {
-        productoLista.remove(indice);
+        var Borrarfile = new File("C:\\Users\\Kristina\\Desktop\\UPS\\POO\\Archivos/producto.txt");
+       Borrarfile.delete();
+
+        this.productoLista.remove(indice);
+
+        try {
+            this.Actualizar();
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
     }
 
     @Override
@@ -70,35 +83,75 @@ public class ProductoServiceImpl implements ProductoService {
             salida = new DataOutputStream(new FileOutputStream(ruta, true));
             salida.writeInt(producto.getCodigo());
             salida.writeUTF(producto.getNombre());
-            salida.close();
+            salida.writeInt(producto.getCantidad());
+            salida.writeDouble(producto.getPrecio());
+            salida.close(); 
         } catch (Exception ex) {
-            salida.close();
+            //Quitado //salida.close();
+            Logger.getLogger(ProductoServiceImpl.class.getName()).log(Level.SEVERE, null, ex); //Agregado
+
         }
 
     }
 
     @Override
-    public List<Producto> leerArchivo(Producto producto, String ruta) {
-
+    public List<Producto> leerArchivo(String ruta) {
+        var productoLista = new ArrayList<Producto>(); //AGR
+        DataInputStream entrada = null;//AGR
         try {
+            entrada = new DataInputStream(new FileInputStream(ruta));
+            while (true) {
+                var codigo = entrada.readInt();
+                var nombre = entrada.readUTF();
+                var cantidad = entrada.readInt();
+                var precio = entrada.readDouble();
 
-            var archivoLectura = new FileReader(ruta);
-            var lectura = new BufferedReader(archivoLectura);
-            var linea = "";
-            while (linea != null) {
-                linea = lectura.readLine();
-                System.out.println("linea = " + linea);
+                var producto = new Producto(codigo, nombre, cantidad, precio);
+                productoLista.add(producto);
 
             }
-            lectura.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("No existe el archivo que desea leer!");
-        } catch (Exception e1) {
-            System.out.println("Error general" + e1.getMessage() + e1.toString());
 
+        } catch (IOException e) {
+            try {
+                entrada.close();
+            } catch (Exception ex) {
+                Logger.getLogger(ProductoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return productoLista;
 
+    }
+
+    @Override
+    public void cargarDatos(List<Producto> cargarLista) {
+        ProductoServiceImpl.productoLista = cargarLista;
+    }
+
+    //AGR
+    public void Actualizar() throws Exception {
+        var Borrarfile = new File("C:\\Users\\Kristina\\Desktop\\UPS\\POO\\Archivos/producto.txt");
+        Borrarfile.delete();
+
+        for (var i = 0; i < productoLista.size(); i++) {
+            this.crearArchivo(productoLista.get(i), "C:\\Users\\Kristina\\Desktop\\UPS\\POO\\Archivos/producto.txt");
+        }
+    }
+
+    @Override
+    public void modificar(Producto producto, int codigo) {
+        var indice = -1;
+        for (var productos : this.productoLista) {
+            indice++;
+            if (codigo == productos.getCodigo()) {
+                this.productoLista.set(indice, producto);
+            }
+        }
+        
+        try {
+            this.Actualizar();
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

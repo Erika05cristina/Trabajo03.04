@@ -41,7 +41,7 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
 
         }
 
-        this.cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
+        this.cbProduc.setModel(new javax.swing.DefaultComboBoxModel<>(data));
 
 //this.cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(data));
     }
@@ -79,12 +79,12 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
 
         btBorrar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        cbProductos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        cbProduc = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btBorrar.setText("Borrar");
         btBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,12 +94,6 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
         });
 
         jLabel6.setText("Seleccionar código de Productos");
-
-        cbProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbProductosActionPerformed(evt);
-            }
-        });
 
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,30 +110,34 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Eliminar Producto");
 
+        cbProduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProducActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(btBorrar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(209, 209, 209)
+                            .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jLabel6)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel1)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cbProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(33, 33, 33)
+                        .addComponent(btBorrar)
+                        .addGap(0, 166, Short.MAX_VALUE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,8 +148,8 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBorrar))
+                    .addComponent(btBorrar)
+                    .addComponent(cbProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 100, Short.MAX_VALUE))
@@ -162,7 +160,16 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
         // TODO add your handling code here:
-        int codigoProducto = Integer.valueOf(this.cbProductos.getSelectedItem().toString());
+        int codigoProducto = Integer.valueOf(this.cbProduc.getSelectedItem().toString());
+       /* try{
+            this.controladorProducto.eliminarProducto(codigoProducto);
+            JOptionPane.showMessageDialog(null, "Se ha eliminado un producto");
+                actualizarCombos();
+                actualizarTabla();
+        }catch (Exception e1) {
+            JOptionPane.showMessageDialog(this, e1.getMessage(), "Error en la Eliminacion", JOptionPane.ERROR_MESSAGE);
+        }
+        */
 
         for (int x = 0; x < controladorProducto.mostrarInfo().size(); x++) {
             if (codigoProducto == controladorProducto.mostrarInfo().get(x).getCodigo()) {
@@ -173,13 +180,14 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
                 break;
 
             }
-
         }
+        
+        
     }//GEN-LAST:event_btBorrarActionPerformed
 
-    private void cbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProductosActionPerformed
+    private void cbProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProducActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbProductosActionPerformed
+    }//GEN-LAST:event_cbProducActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,7 +226,7 @@ public class ProductoEliminar extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBorrar;
-    private javax.swing.JComboBox<String> cbProductos;
+    private javax.swing.JComboBox<String> cbProduc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
